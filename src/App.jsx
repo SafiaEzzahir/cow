@@ -2,6 +2,10 @@ import { useState } from 'react'
 import './App.css'
 // ^ that's how you import css files
 
+import BigCowPage from './BigCowPage/BigCowPage'
+import SpecialCowPage from './SpecialCowPage/SpecialCowPage'
+import BabyCowPage from './BabyCowPage/BabyCowPage'
+
 function App() {
   const [CurrentPage, setCurrentPage] = useState("home")
   /* see EXPLANATION for what useState is, basically CurrentPage is a variable,
