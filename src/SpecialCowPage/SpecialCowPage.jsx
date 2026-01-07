@@ -5,9 +5,10 @@ function SpecialCowImage() {
     )
 }
 
-function SpecialCowPage() {
+function SpecialCowPage(props) {
     return (
         <div>
+            <button onClick={() => props.setPageFunction("home")}>back</button>
             <p>this is special cow page</p>
             <SpecialCowImage />
         </div>
