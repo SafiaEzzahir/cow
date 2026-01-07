@@ -19,6 +19,7 @@ function App() {
   // this is the main app, don't put all of your code straight in here - make other files
 
   function bigcow() {
+    console.log("big")
     setCurrentPage("bigcow")
   }
 
@@ -27,7 +28,7 @@ function App() {
   }
 
   function specialcow() {
-    setCurrentPage
+    setCurrentPage("specialcow")
   }
 
   if (CurrentPage == "home"){
