@@ -1,12 +1,22 @@
 #Everything {
-    height: 96vh;
+    height: 98vh;
 }
 
 #Jumpscare {
-    height: 700px;
-    width: 700px;
+    height: 98vh;
+    width: 98vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    background-color: #140720;
+}
+
+.GrassBackground {
+    background-color: #efecca;
+}
+
+.Fullscreen {
+    padding: 5px;
+    height: 96vh;
+    width: 98vw;
 }
