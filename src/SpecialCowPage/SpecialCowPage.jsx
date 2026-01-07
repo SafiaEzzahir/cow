@@ -9,6 +9,10 @@ import MistIMG from "/src/SpecialCowPage/assets/mist.png";
 import WhiteCloud from "/src/SpecialCowPage/assets/white_cloud.png";
 import GreyCloud from "/src/SpecialCowPage/assets/grey_cloud.png";
 import ThunderIMG from "/src/SpecialCowPage/assets/thunder.png";
+import SadCow from "/src/SpecialCowPage/assets/sad_cow.png";
+import SpecialCowImageIMG from "/src/SpecialCowPage/assets/special_cow.png";
+import TornadoIMG from "/src/SpecialCowPage/assets/tornado.png";
+import HomeButtonIMG from "/src/SpecialCowPage/assets/home.png";
 
 function SpecialCowImage({ sad }) {
     const [cow, setCow] = useState({ x: 10, dir: 1 });
@@ -47,8 +51,8 @@ function SpecialCowImage({ sad }) {
     };
 
     const cowImage = sad
-        ? "src/SpecialCowPage/assets/sad_cow.png"
-        : "src/SpecialCowPage/assets/special_cow.png";
+        ? SadCow
+        : SpecialCowImageIMG
 
     return (
         <img
@@ -148,7 +152,7 @@ function Thunder({ left }) {
 function Tornado({ from }) {
     return (
         <img
-            src="src/SpecialCowPage/assets/tornado.png"
+            src={TornadoIMG}
             className={`tornado ${from}`}
         />
     )
@@ -165,7 +169,7 @@ function Throbber() {
 
 const HomeButton = ({ onClick }) => (
     <img
-        src="src/SpecialCowPage/assets/home.png"
+        src={HomeButtonIMG}
         className="home_button"
         onClick={onClick}
     />
