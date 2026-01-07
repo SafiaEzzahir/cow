@@ -22,31 +22,29 @@ export default {
       });
     }
 
-    try {
-      const { prompt } = await request.json();
+    const url = new URL(request.url);
 
-      if (!prompt) return json({ error: "Prompt is required" }, 400);
-
-      const result = await env.AI.run(
-        "@cf/stabilityai/stable-diffusion-xl-base-1.0",
-        { prompt }
-      );
-
-      return new Response(result, {
-        headers: { "Content-Type": "image/jpeg" },
-      });
-    } catch (err) {
-      return json(
-        { error: "Failed to generate image", details: err.message },
-        500
-      );
+    if (url.pathname === "/debug-ai") {
+      try {
+        const result = await env.AI.run(
+          "@cf/stabilityai/stable-diffusion-xl-base-1.0",
+          { prompt: "Test prompt for debug" }
+        );
+        return new Response(
+          JSON.stringify({
+            success: true,
+            hasImage: !!result.image,
+            raw: result,
+          }),
+          { headers: { "Content-Type": "application/json" } }
+        );
+      } catch (err) {
+        return new Response(
+          JSON.stringify({ success: false, error: err.message }),
+          { headers: { "Content-Type": "application/json" } }
+        );
+      }
     }
   },
 };
 
-function json(data, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: { "Content-Type": "application/json" },
-  });
-}
