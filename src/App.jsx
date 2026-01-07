@@ -22,12 +22,22 @@ function App() {
     setCurrentPage("bigcow")
   }
 
+  function babycow() {
+    setCurrentPage("babycow")
+  }
+
+  function specialcow() {
+    setCurrentPage
+  }
+
   if (CurrentPage == "home"){
     return (
       <div>
         <h1>hello this is safia's header</h1>
         <p>hiiiii i am cow</p>
-        <button onClick={bigcow}>click me!</button>
+        <button onClick={bigcow}>go to bigcow</button>
+        <button onClick={specialcow}>go to specialcow</button>
+        <button onClick={babycow}>go to babycow</button>
       </div>
     )
   } else if (CurrentPage == "bigcow") {
