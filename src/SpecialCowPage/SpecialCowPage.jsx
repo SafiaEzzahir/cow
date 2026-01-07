@@ -1,56 +1,27 @@
 import './special.css'
 import { useState } from "react";
 
-function Weather() {
-  const [city, setCity] = useState("");
-  const [data, setData] = useState(null);
-
-  const getWeather = async () => {
-    const res = await fetch(`api/weather?city=${city}`);
-    const json = await res.json();
-    setData(json);
-  };
-}
-
 function SpecialCowImage() {
     return (
-        <img src="src\SpecialCowPage\assets\special_cow.png" alt="cow with pink and purple spots" className='cow_image'/>
+        <img src="src/SpecialCowPage/assets/special_cow.png" alt="cow with pink and purple spots" className='cow_image'/>
     )
 }
 
 function GreenGrass() {
     return (
-        <img src="src\SpecialCowPage\assets\green_grass.png" className="green_grass"/>
+        <img src="src/SpecialCowPage/assets/green_grass.png" className="green_grass"/>
     )
 }
 
 function ClearSky() {
     return (
-        <img src="src\SpecialCowPage\assets\blue_sky.png" className="clear_sky"/>
+        <img src="src/SpecialCowPage/assets/blue_sky.png" className="clear_sky"/>
     )
 }
 
 function Sun() {
     return (
-        <img src="src\SpecialCowPage\assets\sun.png" className='sun'/>
-    )
-}
-
-function GreyClouds() {
-    return (
-        <>
-            {Array.from({ length: 5 }, (_, i) => (
-                <img 
-                    key={i}
-                    src="src/SpecialCowPage/assets/grey_cloud.png" 
-                    className="grey_cloud"
-                    style={{ 
-                        left: `${i * 20}%`, 
-                        top: `${10 + (i % 3) * 8}vh` 
-                    }}
-                />
-            ))}
-        </>
+        <img src="src/SpecialCowPage/assets/sun.png" className='sun'/>
     )
 }
 
@@ -84,7 +55,6 @@ function Rain() {
                         left: `${Math.random() * 90}%`, 
                         bottom: `${Math.random() * 60}vh` 
                     }}
-
                 />
             ))}
         </>
@@ -92,7 +62,7 @@ function Rain() {
 }
 
 function Snow() {
-        return (
+    return (
         <>
             {Array.from({ length: 50}, (_, i) => (
                 <img
@@ -103,7 +73,6 @@ function Snow() {
                         left: `${Math.random() * 90}%`, 
                         bottom: `${Math.random() * 60}vh` 
                     }}
-
                 />
             ))}
         </>
@@ -112,7 +81,7 @@ function Snow() {
 
 function GreySky () {
     return (
-        <img src="src\SpecialCowPage\assets\grey_sky.png" className="grey_sky"/>
+        <img src="src/SpecialCowPage/assets/grey_sky.png" className="grey_sky"/>
     )
 }
 
@@ -128,10 +97,24 @@ function Hail() {
                         left: `${Math.random() * 90}%`, 
                         bottom: `${Math.random() * 60}vh` 
                     }}
-
                 />
             ))}
         </>
+    )
+}
+
+function Mist() {
+    return (
+        <img src="src/SpecialCowPage/assets/mist.png" className="mist"/>
+    )
+}
+ 
+function Throbber() {
+    return (
+        <div className="throbber-container">
+            <div className="throbber"></div>
+            <p>Looking at the sky…</p>
+        </div>
     )
 }
 
@@ -139,22 +122,31 @@ function SpecialCowPage() {
 
     const [city, setCity] = useState("");
     const [weather, setWeather] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleGetWeather = async () => {
-        if (!city) return; 
+        if (!city) return;
+
+        setLoading(true);
+        setWeather(null);
+
         try {
-            const res = await fetch(`http://127.0.0.1:8000/api/weather?city=${city}`);
+            const res = await fetch(
+                `http://127.0.0.1:8000/api/weather?city=${city}`
+            );
             const data = await res.json();
             setWeather(data);
         } catch (err) {
             console.error("Error fetching weather:", err);
             setWeather({ error: "Could not fetch weather" });
+        } finally {
+            setLoading(false);
         }
     }
 
     return (
         <div>
-     
+
             <input 
                 type='text' 
                 placeholder='Enter city name' 
@@ -162,31 +154,72 @@ function SpecialCowPage() {
                 onChange={(e) => setCity(e.target.value)}
                 className='input_city'
             />
-            <button onClick={handleGetWeather} className='get_weather'>Get Weather</button>
 
-            {weather && !weather.error && (
-                <p>
+            <button 
+                onClick={handleGetWeather} 
+                className='get_weather'
+                disabled={loading}
+            >
+                {loading ? "Loading..." : "Get Weather"}
+            </button>
+
+            {loading && <Throbber />}
+
+            {!loading && weather && !weather.error && (
+                <p className='text'>
                     There is {weather.description} in {weather.city}.  
                     It feels like {weather.feels_like}°C  
                     (High {weather.high}°C / Low {weather.low}°C)
                 </p>
             )}
-            {weather?.error && <p>{weather.error}</p>}
 
-            <ClearSky />
-            <GreySky />
+            {weather?.error && <p className='text'>{weather.error}</p>}
+
+            {!loading && weather?.description?.includes("cloud") && (
+                <>
+                    <ClearSky />
+                    <WhiteClouds />
+                </>
+            )}
+
+            {!loading && weather?.description?.includes("rain") && (
+                <>
+                    <GreySky />
+                    <Rain />
+                </>
+            )}
+
+            {!loading && weather?.description?.includes("snow") && (
+                <>
+                    <GreySky />
+                    <Snow />
+                </>
+            )}
+
+            {!loading && weather?.description?.includes("hail") && (
+                <>
+                    <GreySky />
+                    <Hail />
+                </>
+            )}
+
+            {!loading && weather?.description?.includes("clear") && (
+                <>
+                    <ClearSky />
+                    <Sun />
+                </>
+            )}
+            {!loading && (weather?.description?.includes("mist") || weather?.description?.includes("fog")) && (
+                <>
+                    <Mist />
+                </>
+            )} 
+
             <SpecialCowImage />
             <GreenGrass />
-            <Sun />
-            <Weather />
-            <GreyClouds />
-            <WhiteClouds />
-            <Rain />
-            <Snow />
-            <Hail />
+
         </div>  
     )
 }
-
 
 export default SpecialCowPage;
