@@ -1,6 +1,15 @@
 import './special.css'
 import { useState, useEffect } from "react";
 
+import GrassAsset from "/src/SpecialCowPage/assets/green_grass.png";
+import BlueSky from "/src/SpecialCowPage/assets/blue_sky.png";
+import GreySkyIMG from "/src/SpecialCowPage/assets/grey_sky.png";
+import SunIMG from "/src/SpecialCowPage/assets/sun.png";
+import MistIMG from "/src/SpecialCowPage/assets/mist.png";
+import WhiteCloud from "/src/SpecialCowPage/assets/white_cloud.png";
+import GreyCloud from "/src/SpecialCowPage/assets/grey_cloud.png";
+import ThunderIMG from "/src/SpecialCowPage/assets/thunder.png";
+
 function SpecialCowImage({ sad }) {
     const [cow, setCow] = useState({ x: 10, dir: 1 });
     const [jumping, setJumping] = useState(false);
@@ -57,23 +66,23 @@ function SpecialCowImage({ sad }) {
 }
 
 const GreenGrass = () => (
-    <img src="src/SpecialCowPage/assets/green_grass.png" className="green_grass" />
+    <img src={GrassAsset} className="green_grass" />
 );
 
 const ClearSky = () => (
-    <img src="src/SpecialCowPage/assets/blue_sky.png" className="clear_sky" />
+    <img src={BlueSky} className="clear_sky" />
 );
 
 const GreySky = () => (
-    <img src="src/SpecialCowPage/assets/grey_sky.png" className="grey_sky" />
+    <img src={GreySkyIMG} className="grey_sky" />
 );
 
 const Sun = () => (
-    <img src="src/SpecialCowPage/assets/sun.png" className="sun" />
+    <img src={SunIMG} className="sun" />
 );
 
 const Mist = () => (
-    <img src="src/SpecialCowPage/assets/mist.png" className="mist" />
+    <img src={MistIMG} className="mist" />
 );
 
 function WhiteClouds() {
@@ -82,7 +91,7 @@ function WhiteClouds() {
             {Array.from({ length: 5 }, (_, i) => (
                 <img
                     key={i}
-                    src="src/SpecialCowPage/assets/white_cloud.png"
+                    src={WhiteCloud}
                     className="white_cloud"
                     style={{ left: `${i * 20}%`, top: `${10 + (i % 3) * 8}vh` }}
                 />
@@ -97,7 +106,7 @@ function GreyClouds() {
             {Array.from({ length: 5 }, (_, i) => (
                 <img
                     key={i}
-                    src="src/SpecialCowPage/assets/grey_cloud.png"
+                    src={GreyCloud}
                     className="grey_cloud"
                     style={{ left: `${i * 20}%`, top: `${10 + (i % 3) * 8}vh` }}
                 />
@@ -129,7 +138,7 @@ function Rain({ src, className }) {
 function Thunder({ left }) {
     return (
         <img
-            src="src/SpecialCowPage/assets/thunder.png"
+            src={ThunderIMG}
             className="thunder"
             style={{ left }}
         />
