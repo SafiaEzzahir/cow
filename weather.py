@@ -5,8 +5,6 @@ def get_weather(location):
         result = requests.get(f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}&units=metric")
         if result.json()["cod"] == "404":
             print("City not found. Please try again.")
-            location = input("In what city? ").lower()
-            continue
         break
     description = result.json()["weather"][0]["description"]
     feels_like = round(result.json()["main"]["feels_like"])
