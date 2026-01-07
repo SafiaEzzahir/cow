@@ -179,7 +179,9 @@ function SpecialCowPage({ setPageFunction }) {
         setWeather(null);
 
         try {
-            const res = await fetch(`http://127.0.0.1:8000/api/weather?city=${city}`);
+            const res = await fetch(
+                `https://cowapi-vw4g.onrender.com/api/weather?city=${city}`
+            );
             const data = await res.json();
             setWeather(data);
         } catch {
