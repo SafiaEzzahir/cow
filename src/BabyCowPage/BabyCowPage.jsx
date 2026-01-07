@@ -9,6 +9,7 @@
 
 import "./BabyCowPage.css";
 import { useState } from "react";
+//import useSound from "use-sound";
 
 function BabyCowPage() {
   const [image, setImage] = useState(null);
@@ -21,7 +22,7 @@ function BabyCowPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ prompt: "A cute baby cow in a field" }),
+      body: JSON.stringify({ prompt: "anime pink cute baby cow creepy with evil eyes and bloody knife" }),
     });
     const data = await response.json();
     setImage(data.image);
@@ -30,15 +31,18 @@ function BabyCowPage() {
 
   return (
     <div id="BabyCowPage">
-      <button onClick={generateImage} disabled={loading}>
-        {loading ? "Generating..." : "Generate Baby Cow Image"}
-      </button>
-      <img
+    <h1> A friend just for you!</h1>
+    
+    <button id="GenerateCow" onClick={generateImage} disabled={loading}>
+        {loading ? "Generating..." : "Meet your new baby cow friend :3"}
+    </button>
+
+    <img
         id="Cow"
-        src={image ? `data:image/png;base64,${image}` : "src/assets/cow.jpeg"}
+        src={image ? image : "./assets/cow.jpeg"}
         alt="Baby Cow"
       />
-      <img id="Steak" src="src/assets/cow.jpeg" alt="Baby Steak" />
+    <img id="Steak" src="./assets/cow.jpeg" alt="Baby Steak" />
     </div>
   );
 }

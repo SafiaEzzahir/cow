@@ -1,50 +1,84 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
-
 export default {
   async fetch(request, env) {
-    const corsHeaders = {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
-    };
+    const url = new URL(request.url);
 
     if (request.method === "OPTIONS") {
       return new Response(null, {
-        headers: corsHeaders,
+        status: 204,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+        },
       });
     }
 
-    const url = new URL(request.url);
-
-    if (url.pathname === "/debug-ai") {
+    if (request.method === "POST" && url.pathname === "/image") {
       try {
-        const result = await env.AI.run(
+        const body = await request.json().catch(() => ({}));
+        const prompt = body.prompt;
+
+        if (!prompt) {
+          return new Response(JSON.stringify({ error: "No prompt provided in request body" }), {
+            status: 400,
+            headers: { 
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*" 
+            },
+          });
+        }
+
+        const binaryResponse = await env.AI.run(
           "@cf/stabilityai/stable-diffusion-xl-base-1.0",
-          { prompt: "Test prompt for debug" }
+          { prompt,
+			size: "800x800" 
+		   }
         );
+
+        const arrayBuffer = await new Response(binaryResponse).arrayBuffer();
+        
+        const base64String = btoa(
+          new Uint8Array(arrayBuffer).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ''
+          )
+        );
+
         return new Response(
-          JSON.stringify({
-            success: true,
-            hasImage: !!result.image,
-            raw: result,
+          JSON.stringify({ 
+            image: `data:image/png;base64,${base64String}`,
+            success: true 
           }),
-          { headers: { "Content-Type": "application/json" } }
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
         );
+
       } catch (err) {
+        console.error("Worker Error:", err.message);
+        
         return new Response(
-          JSON.stringify({ success: false, error: err.message }),
-          { headers: { "Content-Type": "application/json" } }
+          JSON.stringify({ 
+            error: "AI Generation Failed", 
+            details: err.message 
+          }),
+          {
+            status: 500,
+            headers: { 
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*" 
+            },
+          }
         );
       }
     }
+
+    return new Response("Not Found", { 
+      status: 404,
+      headers: { "Access-Control-Allow-Origin": "*" } 
+    });
   },
 };
-

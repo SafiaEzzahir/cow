@@ -6,8 +6,8 @@ html, body {
 }
 
 #BabyCowPage{
-    cursor: url('src/assets/cursors/milk-bucket.cur'), auto;
-    background-image: url('src/assets/baby-grass.jpeg');
+    cursor: url('./assets/cursors/milk-bucket.cur'), auto;
+    background-image: url('./assets/pink.jpeg');
     background-size: cover;
     margin: 0;
     padding: 0;
@@ -17,19 +17,38 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 200vh;
+    height: 300vh;
+}
+
+#GenerateCow{
+    font-size: 24px;
+    padding: 15px;
+    background-color: #ffb5e0;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px #ff7dc9;
+    cursor: pointer;
+}
+
+#GenerateCow:hover{
+    background-color: #ff7dc9;
+    box-shadow: 0 4px #f244aa;
+    transform: scale(1.05);
+    transition: transform 0.2s, background-color 0.2s;
 }
 
 #Cow{
-    width: 400px;
-    height: 500px;
+    width: 800px;
+    height: 800px;
+    padding: 40px;
+    border-radius: 400px;
 }
 
 #Cow:hover{
     transform: scale(1.1);
     transition: transform 0.3s;
 
-    cursor: url('src/assets/cursors/steak.cur'), auto;
+    cursor: url('./assets/cursors/steak.cur'), auto;
 }
 
 #Steak{
