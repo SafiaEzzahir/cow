@@ -11,6 +11,24 @@ function Triangle() {
     )
 }
 
+function MainCow() {
+    return (
+      <img src="src/assets/main_cow.png" className='main_cow'/>
+    )
+}
+
+function SpecialCowImage() {
+    return (
+      <img src="src/SpecialCowPage/assets/special_cow.png" className='special_cow_image'/>
+    )
+}
+
+function BigCowImage() {
+    return (
+      <img src="src/assets/cow.png" className='big_cow_image'/>
+    )
+}
+
 function App() {
   const [CurrentPage, setCurrentPage] = useState("home")
   /* see EXPLANATION for what useState is, basically CurrentPage is a variable,
@@ -30,6 +48,9 @@ function App() {
         <button onClick={() => setCurrentPage("specialcow")} className='special_cow'>Go to Special Cow</button>
         <button onClick={() => setCurrentPage("babycow")} className='little_cow'>Go to Baby Cow</button>
         <Triangle />
+        <MainCow />
+        <SpecialCowImage />
+        <BigCowImage />
       </div>
     )
   } else if (CurrentPage == "bigcow") {

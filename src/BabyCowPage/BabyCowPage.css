@@ -1,0 +1,70 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#BabyCowPage{
+    cursor: url('./assets/cursors/milk-bucket.cur'), auto;
+    background-image: url('./assets/pink.jpeg');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300vh;
+}
+
+#GenerateCow{
+    font-size: 24px;
+    padding: 15px;
+    background-color: #ffb5e0;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px #ff7dc9;
+    cursor: pointer;
+}
+
+#GenerateCow:hover{
+    background-color: #ff7dc9;
+    box-shadow: 0 4px #f244aa;
+    transform: scale(1.05);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#Cow{
+    width: 800px;
+    height: 800px;
+    padding: 40px;
+    border-radius: 400px;
+}
+
+#Cow:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s;
+
+    cursor: url('./assets/cursors/steak.cur'), auto;
+}
+
+#Steak{
+    animation: SteakMove 10s infinite ease-in-out;
+}
+
+@keyframes SteakMove{
+    0% { transform: translateX(1200px); }
+    50% { transform: translateX(-1200px); }
+    100% { transform: translateX(1200px); }
+}
+
+@keyframes CowDance {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(100deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-100deg); }
+    100% { transform: rotate(0deg); }
+}
