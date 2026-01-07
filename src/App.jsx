@@ -1,10 +1,15 @@
 import { useState } from 'react'
 import './App.css'
-// ^ that's how you import css files
 
 import BigCowPage from './BigCowPage/BigCowPage'
 import SpecialCowPage from './SpecialCowPage/SpecialCowPage'
 import BabyCowPage from './BabyCowPage/BabyCowPage'
+
+function Triangle() {
+    return (
+      <img src="src/assets/tr.png" className='triangle'/>
+    )
+}
 
 function App() {
   const [CurrentPage, setCurrentPage] = useState("home")
@@ -21,11 +26,10 @@ function App() {
   if (CurrentPage == "home"){
     return (
       <div>
-        <h1>hello this is safia's header</h1>
-        <p>hiiiii i am cow</p>
-        <button onClick={() => setCurrentPage("bigcow")}>go to bigcow</button>
+        <button onClick={() => setCurrentPage("bigcow")} className='big_cow'>Go to Big Cow</button>
         <button onClick={() => setCurrentPage("specialcow")}>go to specialcow</button>
         <button onClick={() => setCurrentPage("babycow")}>go to babycow</button>
+        <Triangle />
       </div>
     )
   } else if (CurrentPage == "bigcow") {

@@ -1,1 +1,14 @@
-/* nothing here yet :) */
+.triangle {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 600px;
+    height: auto;
+    left: 50vw;
+}
+.big_cow {
+    font-size: 24px;
+    padding: 10px 20px;
+    margin: 20px;
+    left: 50vw;
+}
