@@ -3,22 +3,21 @@ import { useState, useEffect } from "react";
 
 function SpecialCowImage() {
     const [cow, setCow] = useState({ x: 10, dir: 1 });
+    const [jumping, setJumping] = useState(false);
 
     useEffect(() => {
         let frameId;
 
         const step = () => {
             setCow(prev => {
-                let nextX = prev.x + prev.dir * 0.2; // adjust speed
+                let nextX = prev.x + prev.dir * 0.2;
                 let nextDir = prev.dir;
 
-                // Bounce off edges
                 if (nextX > 100 || nextX < 0) {
                     nextX = Math.max(0, Math.min(100, nextX));
                     nextDir = -prev.dir;
                 }
 
-                // Occasional random flip
                 if (Math.random() < 0.01) nextDir = -nextDir;
 
                 return { x: nextX, dir: nextDir };
@@ -28,20 +27,25 @@ function SpecialCowImage() {
         };
 
         step();
-
         return () => cancelAnimationFrame(frameId);
     }, []);
+
+    const handleJump = () => {
+        if (jumping) return; // no double jump
+        setJumping(true);
+        setTimeout(() => setJumping(false), 400);
+    };
 
     return (
         <img
             src="src/SpecialCowPage/assets/special_cow.png"
             alt="cow with pink and purple spots"
-            className="cow_image"
+            className={`cow_image ${jumping ? "jump" : ""}`}
+            onClick={handleJump}
             style={{
                 left: `${cow.x}%`,
-                bottom: '5vh',
-                transform: `scaleX(${cow.dir === 1 ? -1 : 1})`, // flipped to match image
-                position: 'absolute',
+                transform: `scaleX(${cow.dir === 1 ? -1 : 1})`,
+                position: "absolute",
             }}
         />
     );

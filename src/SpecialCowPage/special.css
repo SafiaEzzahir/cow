@@ -6,10 +6,18 @@
 }
 
 .cow_image {
-    position:absolute;
+    position: absolute;
+    bottom: 5vh;
     z-index: 4;
+    transition: bottom 0.2s ease-out;
+    cursor: pointer;
     bottom: 0;
 }
+
+.cow_image.jump {
+    bottom: 10vh;
+}
+
 
 .green_grass {
     position:absolute;
