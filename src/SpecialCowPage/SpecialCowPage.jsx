@@ -299,6 +299,7 @@ function SpecialCowPage({ setPageFunction }) {
                 <>
                     <GreySky />
                     <Rain src="src/SpecialCowPage/assets/snow.png" className="snow" />
+                    <WhiteClouds />
                 </>
             )}
 
@@ -306,6 +307,7 @@ function SpecialCowPage({ setPageFunction }) {
                 <>
                     <GreySky />
                     <Rain src="src/SpecialCowPage/assets/hail.png" className="hail" />
+                    <GreyClouds />
                 </>
             )}
 
