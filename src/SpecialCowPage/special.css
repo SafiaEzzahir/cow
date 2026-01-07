@@ -72,7 +72,21 @@
 
 .hail {
     position:absolute;
-    z-index: 11;
+    z-index: 3;
     width: auto;
     height: 5vh;
+}
+
+.input_city {
+    position: absolute;
+    top: 2vh;
+    left: 2vw;
+    z-index: 10;
+}
+
+.get_weather {
+    position: absolute;
+    top: 5vh;
+    left: 2vw;
+    z-index: 10;
 }

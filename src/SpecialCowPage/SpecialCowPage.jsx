@@ -10,27 +10,6 @@ function Weather() {
     const json = await res.json();
     setData(json);
   };
-
-  return (
-    <div>
-      <input
-        value={city}
-        onChange={e => setCity(e.target.value)}
-        placeholder="Enter city"
-      />
-      <button onClick={getWeather}>Get Weather</button>
-
-      {data && !data.error && (
-        <p>
-          There is {data.description} in {data.city}.  
-          It feels like {data.feels_like}°C  
-          (High {data.high}°C / Low {data.low}°C)
-        </p>
-      )}
-
-      {data?.error && <p>{data.error}</p>}
-    </div>
-  );
 }
 
 function SpecialCowImage() {
@@ -143,8 +122,8 @@ function Hail() {
             {Array.from({ length: 80}, (_, i) => (
                 <img
                     key={i}
-                    src="src/SpecialCowPage/assets/snow.png" 
-                    className="snow"
+                    src="src/SpecialCowPage/assets/hail.png" 
+                    className="hail"
                     style={{
                         left: `${Math.random() * 90}%`, 
                         bottom: `${Math.random() * 60}vh` 
@@ -158,10 +137,42 @@ function Hail() {
 
 function SpecialCowPage() {
 
+    const [city, setCity] = useState("");
+    const [weather, setWeather] = useState(null);
+
+    const handleGetWeather = async () => {
+        if (!city) return; 
+        try {
+            const res = await fetch(`http://127.0.0.1:8000/api/weather?city=${city}`);
+            const data = await res.json();
+            setWeather(data);
+        } catch (err) {
+            console.error("Error fetching weather:", err);
+            setWeather({ error: "Could not fetch weather" });
+        }
+    }
+
     return (
         <div>
-            <button onClick={() => props.setPageFunction("home")}>back</button>
-            <p>this is special cow page</p>
+     
+            <input 
+                type='text' 
+                placeholder='Enter city name' 
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className='input_city'
+            />
+            <button onClick={handleGetWeather} className='get_weather'>Get Weather</button>
+
+            {weather && !weather.error && (
+                <p>
+                    There is {weather.description} in {weather.city}.  
+                    It feels like {weather.feels_like}°C  
+                    (High {weather.high}°C / Low {weather.low}°C)
+                </p>
+            )}
+            {weather?.error && <p>{weather.error}</p>}
+
             <ClearSky />
             <GreySky />
             <SpecialCowImage />
@@ -172,8 +183,10 @@ function SpecialCowPage() {
             <WhiteClouds />
             <Rain />
             <Snow />
+            <Hail />
         </div>  
     )
 }
+
 
 export default SpecialCowPage;
