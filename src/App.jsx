@@ -4,40 +4,46 @@ import './App.css'
 import BigCowPage from './BigCowPage/BigCowPage'
 import SpecialCowPage from './SpecialCowPage/SpecialCowPage'
 import BabyCowPage from './BabyCowPage/BabyCowPage'
+import TriangleIMG from "/src/assets/tr.png"
+import MainCowIMG from "/src/assets/main_cow.png"
+import SpecialCowIMG from "/src/SpecialCowPage/assets/special_cow.png"
+import BigCowIMG from "/src/assets/cow.png"
+import NakedCowIMG from "/src/assets/naked_cow.png"
+import BackgroundIMG from "/src/assets/background1.png"
 
 function Triangle() {
     return (
-      <img src="src/assets/tr.png" className='triangle'/>
+      <img src={TriangleIMG} className='triangle'/>
     )
 }
 
 function MainCow() {
     return (
-      <img src="src/assets/main_cow.png" className='main_cow'/>
+      <img src={MainCowIMG} className='main_cow'/>
     )
 }
 
 function SpecialCowImage() {
     return (
-      <img src="src/SpecialCowPage/assets/special_cow.png" className='special_cow_image'/>
+      <img src={SpecialCowIMG} className='special_cow_image'/>
     )
 }
 
 function BigCowImage() {
     return (
-      <img src="src/assets/cow.png" className='big_cow_image'/>
+      <img src={BigCowIMG} className='big_cow_image'/>
     )
 }
 
 function BabyCowImage() {
     return (
-      <img src="src/assets/naked_cow.png" className='baby_cow_image'/>
+      <img src={NakedCowIMG} className='baby_cow_image'/>
     )
 }
 
 function Background() {
     return (
-      <img src="src/assets/background1.png" className='background'/>
+      <img src={BackgroundIMG} className='background'/>
     )
 }
 
