@@ -44,23 +44,46 @@
     top: 10vh;
     width: 470px;
     height: auto;
-    opacity: 0.7;
     margin-left: -80px;
     margin-top: -90px;
 }
 
 .rain {
-    position:absolute;
+    position: absolute;
     z-index: 3;
     width: auto;
     height: 5vh;
+    animation-name: rainFall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rainFall {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(120vh);
+    }
 }
 
 .snow {
-    position:absolute;
+    position: absolute;
     z-index: 3;
     width: auto;
     height: 5vh;
+    animation-name: snowFall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes snowFall {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(120vh);
+    }
 }
 
 .grey_sky {
@@ -71,10 +94,22 @@
 }
 
 .hail {
-    position:absolute;
+    position: absolute;
     z-index: 3;
     width: auto;
     height: 5vh;
+    animation-name: hailFall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes hailFall {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(120vh);
+    }
 }
 
 .mist {
@@ -89,6 +124,7 @@
     top: 2vh;
     left: 2vw;
     z-index: 10;
+    border-radius: 10%;
 }
 
 .get_weather {
@@ -96,6 +132,7 @@
     top: 5vh;
     left: 2vw;
     z-index: 10;
+    border-radius: 10%;
 }
 
 .throbber-container {

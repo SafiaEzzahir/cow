@@ -43,17 +43,37 @@ function WhiteClouds() {
     )
 }
 
+function GreyClouds() {
+    return (
+        <>
+            {Array.from({ length: 5 }, (_, i) => (
+                <img 
+                    key={i}
+                    src="src/SpecialCowPage/assets/grey_cloud.png" 
+                    className="grey_cloud"
+                    style={{ 
+                        left: `${i * 20}%`, 
+                        top: `${10 + (i % 3) * 8}vh` 
+                    }}
+                />
+            ))}
+        </>
+    )
+}
+
 function Rain() {
     return (
         <>
-            {Array.from({ length: 80}, (_, i) => (
+            {Array.from({ length: 70 }, (_, i) => (
                 <img
                     key={i}
-                    src="src/SpecialCowPage/assets/rain.png" 
+                    src="src/SpecialCowPage/assets/rain.png"
                     className="rain"
                     style={{
-                        left: `${Math.random() * 90}%`, 
-                        bottom: `${Math.random() * 60}vh` 
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 90}vh`,
+                        animationDuration: `${5 + Math.random() * 5}s`,
+                        animationDelay: `${Math.random() * 5}s`
                     }}
                 />
             ))}
@@ -64,14 +84,16 @@ function Rain() {
 function Snow() {
     return (
         <>
-            {Array.from({ length: 50}, (_, i) => (
+            {Array.from({ length: 70 }, (_, i) => (
                 <img
                     key={i}
-                    src="src/SpecialCowPage/assets/snow.png" 
+                    src="src/SpecialCowPage/assets/snow.png"
                     className="snow"
                     style={{
-                        left: `${Math.random() * 90}%`, 
-                        bottom: `${Math.random() * 60}vh` 
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 90}vh`,
+                        animationDuration: `${5 + Math.random() * 5}s`,
+                        animationDelay: `${Math.random() * 5}s`
                     }}
                 />
             ))}
@@ -88,14 +110,16 @@ function GreySky () {
 function Hail() {
     return (
         <>
-            {Array.from({ length: 80}, (_, i) => (
+            {Array.from({ length: 70 }, (_, i) => (
                 <img
                     key={i}
-                    src="src/SpecialCowPage/assets/hail.png" 
+                    src="src/SpecialCowPage/assets/hail.png"
                     className="hail"
                     style={{
-                        left: `${Math.random() * 90}%`, 
-                        bottom: `${Math.random() * 60}vh` 
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 90}vh`,
+                        animationDuration: `${5 + Math.random() * 5}s`,
+                        animationDelay: `${Math.random() * 5}s`
                     }}
                 />
             ))}
@@ -186,6 +210,7 @@ function SpecialCowPage() {
                 <>
                     <GreySky />
                     <Rain />
+                    <GreyClouds />
                 </>
             )}
 
@@ -193,6 +218,7 @@ function SpecialCowPage() {
                 <>
                     <GreySky />
                     <Snow />
+                    <WhiteClouds />
                 </>
             )}
 
