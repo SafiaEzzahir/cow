@@ -33,7 +33,6 @@
     top: 10vh;
     width: 470px;
     height: auto;
-    opacity: 0.7;
     margin-left: -80px;
     margin-top: -90px;
 }
@@ -180,4 +179,60 @@
     color: white;
     z-index: 10;
     text-align: center;
+}
+
+.thunder {
+    position: absolute;
+    top: 18vh;   
+    z-index: 4;
+    height: 70vh;
+
+    animation: lightning 0.3s ease-out;
+}
+
+@keyframes lightning {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px) scaleY(0.7);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.tornado {
+    position: absolute;
+    top: 30vh;
+    z-index: 6; 
+    height: 50vh;
+    width: auto;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.tornado.left {
+    left: 0;
+    transform: translateX(-120vw);
+    animation-name: moveRight;
+}
+
+.tornado.right {
+    right: 0;
+    transform: translateX(120vw);
+    animation-name: moveLeft;
+}
+
+@keyframes moveRight {
+    from { transform: translateX(-120vw); }
+    to   { transform: translateX(120vw); }
+}
+
+@keyframes moveLeft {
+    from { transform: translateX(120vw); }
+    to   { transform: translateX(-120vw); }
 }

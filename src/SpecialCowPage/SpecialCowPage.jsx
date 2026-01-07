@@ -1,5 +1,5 @@
 import './special.css'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function SpecialCowImage() {
     return (
@@ -132,6 +132,27 @@ function Mist() {
         <img src="src/SpecialCowPage/assets/mist.png" className="mist"/>
     )
 }
+
+function Thunder({ left }) {
+    return (
+        <img
+            src="src/SpecialCowPage/assets/thunder.png"
+            className="thunder"
+            style={{ left }}
+        />
+    )
+}
+
+function Tornado({ from, keyProp }) {
+    return (
+        <img
+            key={keyProp} 
+            src="src/SpecialCowPage/assets/tornado.png"
+            className={`tornado ${from}`}
+        />
+    )
+}
+
  
 function Throbber() {
     return (
@@ -147,6 +168,14 @@ function SpecialCowPage() {
     const [city, setCity] = useState("");
     const [weather, setWeather] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const [showThunder, setShowThunder] = useState(false);
+    const [thunderLeft, setThunderLeft] = useState("50%");
+
+    const [showTornado, setShowTornado] = useState(false);
+    const [tornadoFrom, setTornadoFrom] = useState("left");
+    const [tornadoes, setTornadoes] = useState([]);
+
 
     const handleGetWeather = async () => {
         if (!city) return;
@@ -167,6 +196,47 @@ function SpecialCowPage() {
             setLoading(false);
         }
     }
+
+    useEffect(() => {
+            if (!weather?.description?.includes("thunder")) return;
+
+            let timeout;
+
+            const triggerThunder = () => {
+                setThunderLeft(`${Math.random() * 80 + 10}%`);
+                setShowThunder(true);
+
+                setTimeout(() => setShowThunder(false), 400);
+
+                timeout = setTimeout(
+                    triggerThunder,
+                    1500 + Math.random() * 4000 
+                );
+            };
+
+            triggerThunder();
+
+            return () => clearTimeout(timeout);
+        }, [weather]);
+
+    useEffect(() => {
+        if (!weather?.description?.includes("tornado")) return;
+
+        const createTornado = () => {
+            const from = Math.random() < 0.5 ? "left" : "right";
+            const id = Date.now(); 
+            setTornadoes(prev => [...prev, { from, id }]);
+
+            setTimeout(() => {
+                setTornadoes(prev => prev.filter(t => t.id !== id));
+            }, 5000);
+        }
+
+        createTornado(); 
+        const interval = setInterval(createTornado, 6000 + Math.random() * 4000); 
+
+        return () => clearInterval(interval);
+    }, [weather]);
 
     return (
         <div>
@@ -206,7 +276,7 @@ function SpecialCowPage() {
                 </>
             )}
 
-            {!loading && weather?.description?.includes("rain") && (
+            {!loading && (weather?.description?.includes("rain") || weather?.description?.includes("drizzle")) && (
                 <>
                     <GreySky />
                     <Rain />
@@ -222,7 +292,7 @@ function SpecialCowPage() {
                 </>
             )}
 
-            {!loading && weather?.description?.includes("hail") && (
+            {!loading && (weather?.description?.includes("hail") || weather?.description?.includes("sleet")) && (
                 <>
                     <GreySky />
                     <Hail />
@@ -235,11 +305,28 @@ function SpecialCowPage() {
                     <Sun />
                 </>
             )}
-            {!loading && (weather?.description?.includes("mist") || weather?.description?.includes("fog")) && (
+            {!loading && (weather?.description?.includes("mist") || weather?.description?.includes("fog") || weather?.description?.includes("smoke")) && (
                 <>
                     <Mist />
                 </>
             )} 
+
+            {!loading && weather?.description?.includes("thunder") && (
+                <>
+                    <GreySky />
+                    {showThunder && <Thunder left={thunderLeft} />}
+                    <GreyClouds />
+                </>
+            )}
+
+            {!loading && weather?.description?.includes("tornado") && (
+                <>
+                    <GreySky />
+                    {tornadoes.map(t => (
+                        <Tornado key={t.id} keyProp={t.id} from={t.from} />
+                    ))}
+                </>
+            )}
 
             <SpecialCowImage />
             <GreenGrass />
