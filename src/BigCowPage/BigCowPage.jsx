@@ -1,7 +1,10 @@
 
-function BigCowPage() {
+function BigCowPage(props) {
     return (
-        <p>this is big cow page</p>
+        <div>
+            <button onClick={() => props.setPageFunction("home")}>back</button>
+            <p>this is big cow page</p>
+        </div>
     )
 }
 
