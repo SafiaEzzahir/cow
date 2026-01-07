@@ -174,7 +174,7 @@
 }
 
 .text {
-    position: fixed;          /* stays at top even if page scrolls */
+    position: fixed;
     top: 2vh;
     left: 50%;
     transform: translateX(-50%);

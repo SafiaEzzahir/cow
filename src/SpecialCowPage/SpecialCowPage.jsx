@@ -1,7 +1,7 @@
 import './special.css'
 import { useState, useEffect } from "react";
 
-function SpecialCowImage() {
+function SpecialCowImage({ sad }) {
     const [cow, setCow] = useState({ x: 10, dir: 1 });
     const [jumping, setJumping] = useState(false);
 
@@ -10,7 +10,8 @@ function SpecialCowImage() {
 
         const step = () => {
             setCow(prev => {
-                let nextX = prev.x + prev.dir * 0.2;
+                const speed = sad ? 0.1 : 0.2;
+                let nextX = prev.x + prev.dir * speed;
                 let nextDir = prev.dir;
 
                 if (nextX > 100 || nextX < 0) {
@@ -28,19 +29,23 @@ function SpecialCowImage() {
 
         step();
         return () => cancelAnimationFrame(frameId);
-    }, []);
+    }, [sad]);
 
     const handleJump = () => {
-        if (jumping) return; // no double jump
+        if (jumping) return;
         setJumping(true);
         setTimeout(() => setJumping(false), 400);
     };
 
+    const cowImage = sad
+        ? "src/SpecialCowPage/assets/sad_cow.png"
+        : "src/SpecialCowPage/assets/special_cow.png";
+
     return (
         <img
-            src="src/SpecialCowPage/assets/special_cow.png"
-            alt="cow with pink and purple spots"
-            className={`cow_image ${jumping ? "jump" : ""}`}
+            src={cowImage}
+            alt="cow"
+            className={`cow_image ${jumping ? "jump" : ""} ${sad ? "sad" : ""}`}
             onClick={handleJump}
             style={{
                 left: `${cow.x}%`,
@@ -51,36 +56,35 @@ function SpecialCowImage() {
     );
 }
 
-function GreenGrass() {
-    return (
-        <img src="src/SpecialCowPage/assets/green_grass.png" className="green_grass"/>
-    )
-}
+const GreenGrass = () => (
+    <img src="src/SpecialCowPage/assets/green_grass.png" className="green_grass" />
+);
 
-function ClearSky() {
-    return (
-        <img src="src/SpecialCowPage/assets/blue_sky.png" className="clear_sky"/>
-    )
-}
+const ClearSky = () => (
+    <img src="src/SpecialCowPage/assets/blue_sky.png" className="clear_sky" />
+);
 
-function Sun() {
-    return (
-        <img src="src/SpecialCowPage/assets/sun.png" className='sun'/>
-    )
-}
+const GreySky = () => (
+    <img src="src/SpecialCowPage/assets/grey_sky.png" className="grey_sky" />
+);
+
+const Sun = () => (
+    <img src="src/SpecialCowPage/assets/sun.png" className="sun" />
+);
+
+const Mist = () => (
+    <img src="src/SpecialCowPage/assets/mist.png" className="mist" />
+);
 
 function WhiteClouds() {
     return (
         <>
             {Array.from({ length: 5 }, (_, i) => (
-                <img 
+                <img
                     key={i}
-                    src="src/SpecialCowPage/assets/white_cloud.png" 
+                    src="src/SpecialCowPage/assets/white_cloud.png"
                     className="white_cloud"
-                    style={{ 
-                        left: `${i * 20}%`, 
-                        top: `${10 + (i % 3) * 8}vh` 
-                    }}
+                    style={{ left: `${i * 20}%`, top: `${10 + (i % 3) * 8}vh` }}
                 />
             ))}
         </>
@@ -91,28 +95,25 @@ function GreyClouds() {
     return (
         <>
             {Array.from({ length: 5 }, (_, i) => (
-                <img 
+                <img
                     key={i}
-                    src="src/SpecialCowPage/assets/grey_cloud.png" 
+                    src="src/SpecialCowPage/assets/grey_cloud.png"
                     className="grey_cloud"
-                    style={{ 
-                        left: `${i * 20}%`, 
-                        top: `${10 + (i % 3) * 8}vh` 
-                    }}
+                    style={{ left: `${i * 20}%`, top: `${10 + (i % 3) * 8}vh` }}
                 />
             ))}
         </>
     )
 }
 
-function Rain() {
+function Rain({ src, className }) {
     return (
         <>
             {Array.from({ length: 70 }, (_, i) => (
                 <img
                     key={i}
-                    src="src/SpecialCowPage/assets/rain.png"
-                    className="rain"
+                    src={src}
+                    className={className}
                     style={{
                         left: `${Math.random() * 100}%`,
                         top: `${Math.random() * 90}vh`,
@@ -122,58 +123,6 @@ function Rain() {
                 />
             ))}
         </>
-    )
-}
-
-function Snow() {
-    return (
-        <>
-            {Array.from({ length: 70 }, (_, i) => (
-                <img
-                    key={i}
-                    src="src/SpecialCowPage/assets/snow.png"
-                    className="snow"
-                    style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 90}vh`,
-                        animationDuration: `${5 + Math.random() * 5}s`,
-                        animationDelay: `${Math.random() * 5}s`
-                    }}
-                />
-            ))}
-        </>
-    )
-}
-
-function GreySky () {
-    return (
-        <img src="src/SpecialCowPage/assets/grey_sky.png" className="grey_sky"/>
-    )
-}
-
-function Hail() {
-    return (
-        <>
-            {Array.from({ length: 70 }, (_, i) => (
-                <img
-                    key={i}
-                    src="src/SpecialCowPage/assets/hail.png"
-                    className="hail"
-                    style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 90}vh`,
-                        animationDuration: `${5 + Math.random() * 5}s`,
-                        animationDelay: `${Math.random() * 5}s`
-                    }}
-                />
-            ))}
-        </>
-    )
-}
-
-function Mist() {
-    return (
-        <img src="src/SpecialCowPage/assets/mist.png" className="mist"/>
     )
 }
 
@@ -187,17 +136,15 @@ function Thunder({ left }) {
     )
 }
 
-function Tornado({ from, keyProp }) {
+function Tornado({ from }) {
     return (
         <img
-            key={keyProp} 
             src="src/SpecialCowPage/assets/tornado.png"
             className={`tornado ${from}`}
         />
     )
 }
 
- 
 function Throbber() {
     return (
         <div className="throbber-container">
@@ -207,11 +154,13 @@ function Throbber() {
     )
 }
 
-function HomeButton({ onClick }) {
-    return (
-        <img src="src/SpecialCowPage/assets/home.png" className="home_button" onClick={onClick}/>
-    )
-}
+const HomeButton = ({ onClick }) => (
+    <img
+        src="src/SpecialCowPage/assets/home.png"
+        className="home_button"
+        onClick={onClick}
+    />
+);
 
 function SpecialCowPage({ setPageFunction }) {
 
@@ -221,14 +170,7 @@ function SpecialCowPage({ setPageFunction }) {
 
     const [showThunder, setShowThunder] = useState(false);
     const [thunderLeft, setThunderLeft] = useState("50%");
-
-    const [showTornado, setShowTornado] = useState(false);
-    const [tornadoFrom, setTornadoFrom] = useState("left");
     const [tornadoes, setTornadoes] = useState([]);
-
-    const [position, setPosition] = useState(0);
-    const [direction, setDirection] = useState(1);
-    const [paused, setPaused] = useState(false);
 
     const handleGetWeather = async () => {
         if (!city) return;
@@ -237,74 +179,78 @@ function SpecialCowPage({ setPageFunction }) {
         setWeather(null);
 
         try {
-            const res = await fetch(
-                `http://127.0.0.1:8000/api/weather?city=${city}`
-            );
+            const res = await fetch(`http://127.0.0.1:8000/api/weather?city=${city}`);
             const data = await res.json();
             setWeather(data);
-        } catch (err) {
-            console.error("Error fetching weather:", err);
+        } catch {
             setWeather({ error: "Could not fetch weather" });
         } finally {
             setLoading(false);
         }
-    }
+    };
+
+    const sadWeather =
+        weather?.description &&
+        (
+            weather.description.includes("rain") ||
+            weather.description.includes("drizzle") ||
+            weather.description.includes("thunder") ||
+            weather.description.includes("snow") ||
+            weather.description.includes("hail") ||
+            weather.description.includes("sleet") ||
+            weather.description.includes("tornado") ||
+            weather.description.includes("mist") ||
+            weather.description.includes("fog") ||
+            weather.description.includes("haze") ||
+            weather.description.includes("smoke")
+        );
 
     useEffect(() => {
-            if (!weather?.description?.includes("thunder")) return;
+        if (!weather?.description?.includes("thunder")) return;
 
-            let timeout;
+        let timeout;
 
-            const triggerThunder = () => {
-                setThunderLeft(`${Math.random() * 80 + 10}%`);
-                setShowThunder(true);
+        const trigger = () => {
+            setThunderLeft(`${Math.random() * 80 + 10}%`);
+            setShowThunder(true);
+            setTimeout(() => setShowThunder(false), 400);
+            timeout = setTimeout(trigger, 2000 + Math.random() * 3000);
+        };
 
-                setTimeout(() => setShowThunder(false), 400);
-
-                timeout = setTimeout(
-                    triggerThunder,
-                    1500 + Math.random() * 4000 
-                );
-            };
-
-            triggerThunder();
-
-            return () => clearTimeout(timeout);
-        }, [weather]);
+        trigger();
+        return () => clearTimeout(timeout);
+    }, [weather]);
 
     useEffect(() => {
         if (!weather?.description?.includes("tornado")) return;
 
-        const createTornado = () => {
+        const spawn = () => {
+            const id = Date.now();
             const from = Math.random() < 0.5 ? "left" : "right";
-            const id = Date.now(); 
-            setTornadoes(prev => [...prev, { from, id }]);
-
+            setTornadoes(prev => [...prev, { id, from }]);
             setTimeout(() => {
                 setTornadoes(prev => prev.filter(t => t.id !== id));
             }, 5000);
-        }
+        };
 
-        createTornado(); 
-        const interval = setInterval(createTornado, 6000 + Math.random() * 4000); 
-
+        spawn();
+        const interval = setInterval(spawn, 7000);
         return () => clearInterval(interval);
     }, [weather]);
 
     return (
         <div>
 
-            <input 
-                type='text' 
-                placeholder='Enter city name' 
+            <input
+                className="input_city"
+                placeholder="Enter city name"
                 value={city}
-                onChange={(e) => setCity(e.target.value)}
-                className='input_city'
+                onChange={e => setCity(e.target.value)}
             />
 
-            <button 
-                onClick={handleGetWeather} 
-                className='get_weather'
+            <button
+                className="get_weather"
+                onClick={handleGetWeather}
                 disabled={loading}
             >
                 {loading ? "Loading..." : "Get Weather"}
@@ -312,15 +258,25 @@ function SpecialCowPage({ setPageFunction }) {
 
             {loading && <Throbber />}
 
+            {!loading && weather?.error && (
+                <p className="text error">{weather.error}</p>
+            )}
+
             {!loading && weather && !weather.error && (
-                <p className='text'>
-                    There is {weather.description} in {weather.city}.  
-                    It feels like {weather.feels_like}°C  
+                <p className="text">
+                    There is {weather.description} in {weather.city}.
+                    It feels like {weather.feels_like}°C
                     (High {weather.high}°C / Low {weather.low}°C)
                 </p>
             )}
 
-            {weather?.error && <p className='text'>{weather.error}</p>}
+
+            {!loading && weather?.description?.includes("clear") && (
+                <>
+                    <ClearSky />
+                    <Sun />
+                </>
+            )}
 
             {!loading && weather?.description?.includes("cloud") && (
                 <>
@@ -332,7 +288,7 @@ function SpecialCowPage({ setPageFunction }) {
             {!loading && (weather?.description?.includes("rain") || weather?.description?.includes("drizzle")) && (
                 <>
                     <GreySky />
-                    <Rain />
+                    <Rain src="src/SpecialCowPage/assets/rain.png" className="rain" />
                     <GreyClouds />
                 </>
             )}
@@ -340,29 +296,22 @@ function SpecialCowPage({ setPageFunction }) {
             {!loading && weather?.description?.includes("snow") && (
                 <>
                     <GreySky />
-                    <Snow />
-                    <WhiteClouds />
+                    <Rain src="src/SpecialCowPage/assets/snow.png" className="snow" />
                 </>
             )}
 
             {!loading && (weather?.description?.includes("hail") || weather?.description?.includes("sleet")) && (
                 <>
                     <GreySky />
-                    <Hail />
+                    <Rain src="src/SpecialCowPage/assets/hail.png" className="hail" />
                 </>
             )}
 
-            {!loading && weather?.description?.includes("clear") && (
-                <>
-                    <ClearSky />
-                    <Sun />
-                </>
-            )}
-            {!loading && (weather?.description?.includes("mist") || weather?.description?.includes("fog") || weather?.description?.includes("smoke")) && (
+            {!loading && (weather?.description?.includes("mist") || weather?.description?.includes("fog") || weather?.description?.includes("smoke") || weather?.description?.includes("haze")) && (
                 <>
                     <Mist />
                 </>
-            )} 
+            )}
 
             {!loading && weather?.description?.includes("thunder") && (
                 <>
@@ -376,18 +325,17 @@ function SpecialCowPage({ setPageFunction }) {
                 <>
                     <GreySky />
                     {tornadoes.map(t => (
-                        <Tornado key={t.id} keyProp={t.id} from={t.from} />
+                        <Tornado key={t.id} from={t.from} />
                     ))}
                 </>
             )}
 
-            <SpecialCowImage />
+            <SpecialCowImage sad={sadWeather} />
             <GreenGrass />
-
             <HomeButton onClick={() => setPageFunction("home")} />
 
-        </div>  
-    )
+        </div>
+    );
 }
 
 export default SpecialCowPage;
