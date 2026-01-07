@@ -1,7 +1,10 @@
 
-function BabyCowPage() {
+function BabyCowPage(props) {
     return (
-        <p>this is baby cow page</p>
+        <div>
+            <button onClick={() => props.setPageFunction("home")}>back</button>
+            <p>this is baby cow page</p>
+        </div>
     )
 }
 

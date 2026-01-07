@@ -1,0 +1,12 @@
+#Everything {
+    height: 96vh;
+}
+
+#Jumpscare {
+    height: 700px;
+    width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+}
