@@ -15,8 +15,21 @@
     background-color: #efecca;
 }
 
+#Grass {
+    background-color: #d5e68d;
+    height: 300px;
+    width: 100%;
+}
+
 .Fullscreen {
     padding: 5px;
     height: 96vh;
     width: 98vw;
+}
+
+#MainGame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
 }
