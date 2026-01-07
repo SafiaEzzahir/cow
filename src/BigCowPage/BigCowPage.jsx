@@ -4,11 +4,62 @@ import './BigCowPage.css'
 
 import cowImage from '/src/assets/cow.png'
 
+import CowJumpscare from '/src/assets/cowjumpscare.png'
+
+function Flower({ x, y, size }) {
+  return (
+    <button
+      fire={false}
+      style={{
+        position: "absolute",
+        left: x,
+        top: y,
+        width: size,
+        height: size,
+        backgroundColor: "black",
+        borderRadius: "50%"
+      }}
+    />
+  );
+}
+
+function Flowers() {
+  const [flowers, setFlowers] = useState([]);
+
+  useEffect(() => {
+    const count = Math.floor(Math.random() * 10 + 5);
+    const newFlowers = [];
+
+    for (let i = 0; i < count; i++) {
+      newFlowers.push({
+        x: Math.random() * 1250,
+        y: Math.random() * 250,
+        size: Math.random() * 20 + 20
+      });
+    }
+
+    setFlowers(newFlowers);
+  }, []); // runs once on mount
+
+  return (
+    <div style={{ position: "relative", width: 500, height: 300 }}>
+      {flowers.map((flower, index) => (
+        <Flower
+          key={index}
+          x={flower.x}
+          y={flower.y}
+          size={flower.size}
+        />
+      ))}
+    </div>
+  );
+}
+
 function ImpossibleButton({ onClick }) {
     const containerRef = useRef(null)
     const buttonRef = useRef(null)
 
-    const [pos, setPos] = useState({ x: 180, y: 120 })
+    const [pos, setPos] = useState({ x: 430, y: 80 })
 
     const speed = 12
     const dangerRadius = 200
@@ -150,7 +201,9 @@ function MainGame(props) {
             
             <ImpossibleButton onClick={() => props.setPageFunction("home")}/>
             <BigCowCanvas/>
-            <div id='Grass'></div>
+            <div id='Grass'>
+                <Flowers/>
+            </div>
         </div>
     )
 }
@@ -161,7 +214,7 @@ function Jumpscare(props) {
 
     return(
         <div id="Jumpscare">
-            <img src="./src/assets/cowjumpscare.png" alt="a scary cow is looking at you" />
+            <img src={CowJumpscare} alt="a scary cow is looking at you" />
         </div>
     )
 }
@@ -171,10 +224,10 @@ function BigCowPage(props) {
     const [BigCowStage, setBigCowStage] = useState("jumpscare")
 
     if (BigCowStage == "jumpscare") {
-        return <Jumpscare setStage={setBigCowStage} />
+        return <Jumpscare className="Fullscreen" setStage={setBigCowStage}/>
     } else {
         return (
-            <MainGame setPageFunction={props.setPageFunction} />
+            <MainGame setPageFunction={props.setPageFunction}/>
         )
     }
 
