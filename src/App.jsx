@@ -29,6 +29,18 @@ function BigCowImage() {
     )
 }
 
+function BabyCowImage() {
+    return (
+      <img src="src/assets/naked_cow.png" className='baby_cow_image'/>
+    )
+}
+
+function Background() {
+    return (
+      <img src="src/assets/background.png" className='background'/>
+    )
+}
+
 function App() {
   const [CurrentPage, setCurrentPage] = useState("home")
   /* see EXPLANATION for what useState is, basically CurrentPage is a variable,
@@ -44,13 +56,15 @@ function App() {
   if (CurrentPage == "home"){
     return (
       <div className='App'>
-        <button onClick={() => setCurrentPage("bigcow")} className='big_cow'>Go to Big Cow</button>
-        <button onClick={() => setCurrentPage("specialcow")} className='special_cow'>Go to Special Cow</button>
-        <button onClick={() => setCurrentPage("babycow")} className='little_cow'>Go to Baby Cow</button>
+        <button onClick={() => setCurrentPage("bigcow")} className='big_cow'>GO TO BIG COW</button>
+        <button onClick={() => setCurrentPage("specialcow")} className='special_cow'>GO TO SPECIAL COW</button>
+        <button onClick={() => setCurrentPage("babycow")} className='little_cow'>GO TO BABY COW</button>
         <Triangle />
         <MainCow />
         <SpecialCowImage />
         <BigCowImage />
+        <BabyCowImage />
+        <Background />
       </div>
     )
   } else if (CurrentPage == "bigcow") {
