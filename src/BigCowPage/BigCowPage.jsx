@@ -210,7 +210,7 @@ function MainGame(props) {
 
 function Jumpscare(props) {
 
-    setTimeout(() => props.setStage("next"), 300)
+    setTimeout(() => props.setStage("next"), 700)
 
     return(
         <div id="Jumpscare">
