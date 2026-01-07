@@ -1,12 +1,14 @@
 .clear_sky {
     position:absolute;
     z-index: 1;
+    top: 0;
     width: 100vw;
 }
 
 .cow_image {
     position:absolute;
-    z-index: 3;
+    z-index: 4;
+    bottom: 0;
 }
 
 .green_grass {
@@ -14,6 +16,7 @@
     z-index: 2;
     bottom: 0;
     width: 100vw;
+    height: 40vh;
 }
 
 
@@ -22,4 +25,47 @@
     z-index: 4;
     top: 0;
     right: 0;
+}
+
+.grey_cloud {
+    position:absolute;
+    z-index: 5;
+    top: 10vh;
+    width: 470px;
+    height: auto;
+    opacity: 0.7;
+    margin-left: -80px;
+    margin-top: -90px;
+}
+
+.white_cloud {
+    position:absolute;
+    z-index: 6;
+    top: 10vh;
+    width: 470px;
+    height: auto;
+    opacity: 0.7;
+    margin-left: -80px;
+    margin-top: -90px;
+}
+
+.rain {
+    position:absolute;
+    z-index: 3;
+    width: auto;
+    height: 5vh;
+}
+
+.snow {
+    position:absolute;
+    z-index: 3;
+    width: auto;
+    height: 5vh;
+}
+
+.grey_sky {
+    position:absolute;
+    z-index: 1;
+    top: 0;
+    width: 100vw;
 }
