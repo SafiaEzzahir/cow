@@ -37,7 +37,7 @@ function BabyCowImage() {
 
 function Background() {
     return (
-      <img src="src/assets/background.png" className='background'/>
+      <img src="src/assets/background1.png" className='background'/>
     )
 }
 
