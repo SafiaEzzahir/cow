@@ -139,7 +139,6 @@ function GreySky () {
 
 function SpecialCowPage() {
 
-function SpecialCowPage(props) {
     return (
         <div>
             <button onClick={() => props.setPageFunction("home")}>back</button>
