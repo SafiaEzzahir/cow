@@ -69,3 +69,10 @@
     top: 0;
     width: 100vw;
 }
+
+.hail {
+    position:absolute;
+    z-index: 11;
+    width: auto;
+    height: 5vh;
+}

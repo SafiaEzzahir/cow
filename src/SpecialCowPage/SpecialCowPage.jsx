@@ -137,6 +137,25 @@ function GreySky () {
     )
 }
 
+function Hail() {
+    return (
+        <>
+            {Array.from({ length: 80}, (_, i) => (
+                <img
+                    key={i}
+                    src="src/SpecialCowPage/assets/snow.png" 
+                    className="snow"
+                    style={{
+                        left: `${Math.random() * 90}%`, 
+                        bottom: `${Math.random() * 60}vh` 
+                    }}
+
+                />
+            ))}
+        </>
+    )
+}
+
 function SpecialCowPage() {
 
     return (
