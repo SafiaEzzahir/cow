@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 
 import './BigCowPage.css'
 
-import cowImage from '/src/assets/cowjumpscare.png'
+import cowImage from '/src/assets/cow.png'
 
 function ImpossibleButton({ onClick }) {
     const containerRef = useRef(null)
@@ -11,7 +11,7 @@ function ImpossibleButton({ onClick }) {
     const [pos, setPos] = useState({ x: 180, y: 120 })
 
     const speed = 12
-    const dangerRadius = 120
+    const dangerRadius = 200
 
     useEffect(() => {
         function handleMouseMove(e) {
@@ -71,10 +71,12 @@ function ImpossibleButton({ onClick }) {
                     top: pos.y,
                     padding: '12px 24px',
                     fontSize: '18px',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    backgroundColor: '#ffffff',
+                    border: '0px'
                 }}
             >
-                CLICK ME
+                go back
             </button>
         </div>
     )
@@ -86,9 +88,9 @@ function BigCowCanvas() {
 
     const cow = useRef({
         x: 200,
-        y: 220,
+        y: 150,
         width: 80,
-        height: 80,
+        height: 160,
         speed: 20
     })
 
@@ -147,7 +149,6 @@ function MainGame(props) {
         <div className='Fullscreen GrassBackground' id='MainGame'>
             
             <ImpossibleButton onClick={() => props.setPageFunction("home")}/>
-            <p>this is big cow page</p>
             <BigCowCanvas/>
             <div id='Grass'></div>
         </div>
