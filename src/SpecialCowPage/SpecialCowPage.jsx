@@ -13,6 +13,9 @@ import SadCow from "/src/SpecialCowPage/assets/sad_cow.png";
 import SpecialCowImageIMG from "/src/SpecialCowPage/assets/special_cow.png";
 import TornadoIMG from "/src/SpecialCowPage/assets/tornado.png";
 import HomeButtonIMG from "/src/SpecialCowPage/assets/home.png";
+import RainIMG from "/src/SpecialCowPage/assets/rain.png";
+import SnowIMG from "/src/SpecialCowPage/assets/snow.png";
+import HailIMG from "/src/SpecialCowPage/assets/hail.png";
 
 function SpecialCowImage({ sad }) {
     const [cow, setCow] = useState({ x: 10, dir: 1 });
@@ -303,7 +306,7 @@ function SpecialCowPage({ setPageFunction }) {
             {!loading && (weather?.description?.includes("rain") || weather?.description?.includes("drizzle")) && (
                 <>
                     <GreySky />
-                    <Rain src="src/SpecialCowPage/assets/rain.png" className="rain" />
+                    <Rain src={RainIMG} className="rain" />
                     <GreyClouds />
                 </>
             )}
@@ -311,7 +314,7 @@ function SpecialCowPage({ setPageFunction }) {
             {!loading && weather?.description?.includes("snow") && (
                 <>
                     <GreySky />
-                    <Rain src="src/SpecialCowPage/assets/snow.png" className="snow" />
+                    <Rain src={SnowIMG} className="snow" />
                     <WhiteClouds />
                 </>
             )}
@@ -319,7 +322,7 @@ function SpecialCowPage({ setPageFunction }) {
             {!loading && (weather?.description?.includes("hail") || weather?.description?.includes("sleet")) && (
                 <>
                     <GreySky />
-                    <Rain src="src/SpecialCowPage/assets/hail.png" className="hail" />
+                    <Rain src={HailIMG} className="hail" />
                     <GreyClouds />
                 </>
             )}
