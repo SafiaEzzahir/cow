@@ -33,7 +33,6 @@ h1{
 
 #BabyCowPage {
     cursor: url("./assets/cursors/milk-bucket.cur"), auto;
-    background-image: url("./src/assets/pink.jpeg");
     background-size: cover;
     margin: 0;
     padding: 0;

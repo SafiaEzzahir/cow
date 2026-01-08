@@ -4,6 +4,8 @@ import { useState } from "react";
 //import useSound from "use-sound";
 //hii
 
+import PinkBackground from '/src/assets/pink.jpeg'
+
 function BabyCowPage() {
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -28,7 +30,11 @@ function BabyCowPage() {
   }
 
   return (
-    <div id="BabyCowPage">
+    <div id="BabyCowPage"
+      style={{
+          backgroundImage: `url(${PinkBackground})`,
+          backgroundSize: 'cover',}}
+    >
       <h1> A friend just for you!</h1>
 
       <div id="PreferenceButtons">
