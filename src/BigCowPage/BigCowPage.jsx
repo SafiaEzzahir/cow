@@ -162,7 +162,7 @@ function ImpossibleButton({ onClick }) {
                     border: '0px'
                 }}
             >
-                go back
+                GO BACK
             </button>
         </div>
     )
