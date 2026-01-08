@@ -62,12 +62,12 @@ function Flowers() {
   const [flowers, setFlowers] = useState([]);
 
   useEffect(() => {
-    const count = Math.floor(Math.random() * 10 + 5);
+    const count = Math.floor(Math.random() * 100 + 20);
     const newFlowers = [];
 
     for (let i = 0; i < count; i++) {
       newFlowers.push({
-        x: Math.random() * 1250,
+        x: Math.random() * 1400,
         y: Math.random() * 250,
         size: Math.random() * 20 + 20
       });
