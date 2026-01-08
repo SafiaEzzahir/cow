@@ -43,7 +43,7 @@ function Flower({ x, y, size }) {
         );} else {
         return (
             <img
-            src="/src/assets/cowjumpscare.png   "
+            src={CowJumpscare}
             alt="flower on fire"
             style={{
                 position: "absolute",
