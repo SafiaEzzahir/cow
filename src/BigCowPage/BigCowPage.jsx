@@ -8,6 +8,10 @@ import CowJumpscare from '/src/assets/cowjumpscare.png'
 
 const CowImages = ["/src/assets/flower1.png", "/src/assets/flower2.png", "/src/assets/flower3.png", "/src/assets/flower4.png", "/src/assets/flower5.png", "/src/assets/flower6.png", "/src/assets/flower7.png"]
 
+import fenceImage from '/src/assets/fence.png'
+const Fence = new Image()
+Fence.src = fenceImage
+
 function Flower({ x, y, size }) {
     const [OnFire, setOnFire] = useState(false);
     
@@ -179,6 +183,14 @@ function BigCowCanvas() {
 
         function drawCow() {
             ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+            ctx.drawImage(
+                Fence,
+                -25,
+                25,
+                550,
+                350
+            )
 
             ctx.drawImage(
                 imageRef.current,
