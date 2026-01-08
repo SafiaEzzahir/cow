@@ -1,4 +1,4 @@
-#Cult of Cow - the Triangle
+# Cult of Cow - the Triangle
 
 Welcome to the Cult of Cow - three cows are waiting to meet you:
 
