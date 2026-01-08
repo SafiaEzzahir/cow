@@ -6,7 +6,15 @@ import cowImage from '/src/assets/cow.png'
 
 import CowJumpscare from '/src/assets/cowjumpscare.png'
 
-const CowImages = ["/src/assets/flower1.png", "/src/assets/flower2.png", "/src/assets/flower3.png", "/src/assets/flower4.png", "/src/assets/flower5.png", "/src/assets/flower6.png", "/src/assets/flower7.png"]
+import Flower1 from '/src/assets/flower1.png'
+import Flower2 from '/src/assets/flower2.png'
+import Flower3 from '/src/assets/flower3.png'
+import Flower4 from '/src/assets/flower4.png'
+import Flower5 from '/src/assets/flower5.png'
+import Flower6 from '/src/assets/flower6.png'
+import Flower7 from '/src/assets/flower7.png'
+
+const CowImages = [Flower1, Flower2, Flower3, Flower4, Flower5, Flower6, Flower7]
 
 import fenceImage from '/src/assets/fence.png'
 const Fence = new Image()
@@ -165,7 +173,7 @@ function BigCowCanvas() {
     const imageRef = useRef(new Image())
 
     const cow = useRef({
-        x: 200,
+        x: 210,
         y: 150,
         width: 80,
         height: 160,
@@ -186,7 +194,7 @@ function BigCowCanvas() {
 
             ctx.drawImage(
                 Fence,
-                -25,
+                -23,
                 25,
                 550,
                 350
