@@ -37,18 +37,23 @@ function BabyCowPage() {
           Strawberry
         </button>
         <button id="Button" onClick={() => setLikes([...likes, "Spaghetti"])}>
+          <img src="./assets/spaghetti.png" alt="Spaghetti" width="100" height="100"/>
           Spaghetti
         </button>
         <button id="Button" onClick={() => setLikes([...likes, "Steak"])}>
+          <img src="./assets/steak.png" alt="Steak" width="100" height="100"/>
           Steak
         </button>
         <button id="Button" onClick={() => setLikes([...likes, "Boba Tea"])}>
+          <img src="./assets/boba.png" alt="Boba" width="100" height="100"/>
           Boba
         </button>
         <button id="Button" onClick={() => setLikes([...likes, "Pizza"])}>
+          <img src="./assets/pizza.png" alt="Pizza" width="100" height="100"/>
           Pizza
         </button>
         <button id="Button" onClick={() => setLikes([...likes, "With 9 tiny baby cows"])}>
+          <img src="./assets/baby-cow.png" alt="Baby Cow" width="100" height="100"/>
           Baby Cows
         </button>
       </div>
@@ -58,7 +63,8 @@ function BabyCowPage() {
       </button>
 
       <img id="Cow" src={loading? "./assets/loading.gif" : (image ? image : "./assets/cow.jpeg")} alt="Baby Cow" />
-      <img id="Steak" src="./assets/cow.jpeg" alt="Baby Steak" />
+
+      <button id="HomeButton" onClick={() => window.location.href = "/"}>Bye bye</button>
     </div>
   );
 }
