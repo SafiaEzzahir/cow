@@ -6,21 +6,44 @@ import cowImage from '/src/assets/cow.png'
 
 import CowJumpscare from '/src/assets/cowjumpscare.png'
 
+const CowImages = ["/src/assets/flower1.png", "/src/assets/flower2.png", "/src/assets/flower3.png", "/src/assets/flower4.png", "/src/assets/flower5.png", "/src/assets/flower6.png", "/src/assets/flower7.png"]
+
 function Flower({ x, y, size }) {
-  return (
-    <button
-      fire={false}
-      style={{
-        position: "absolute",
-        left: x,
-        top: y,
-        width: size,
-        height: size,
-        backgroundColor: "black",
-        borderRadius: "50%"
-      }}
-    />
-  );
+    const [OnFire, setOnFire] = useState(false);
+    
+    let image = CowImages[Math.floor(Math.random() * CowImages.length)];
+
+    if (!OnFire) {
+        return (
+            <button
+            onClick={() =>setOnFire(true)}
+            style={{
+                position: "absolute",
+                left: x,
+                top: y,
+                width: size,
+                height: size,
+                background: "none",
+                border: "none",
+                padding: 0,
+            }}
+            ><img src={image} alt="a flower" /></button>
+        );} else {
+        return (
+            <img
+            src="/src/assets/cowjumpscare.png   "
+            alt="flower on fire"
+            style={{
+                position: "absolute",
+                left: x,
+                top: y,
+                width: size,
+                height: size,
+            }}
+            />
+        );
+    }
+
 }
 
 function Flowers() {
