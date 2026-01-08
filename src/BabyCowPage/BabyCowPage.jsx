@@ -33,7 +33,7 @@ function BabyCowPage() {
     <div id="BabyCowPage"
       style={{
           backgroundImage: `url(${PinkBackground})`,
-          backgroundSize: 'stretch',}}
+          backgroundSize: 'cover',}}
     >
       <h1> A friend just for you!</h1>
 
